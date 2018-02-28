@@ -9,16 +9,10 @@
 
 
 class Song:
-    year = None
-    artist = ''
-    title = ''
-    lyrics = ''
-
-    def __init__(self, year=None, artist='', title='', lyrics=''):
-        self.year = year
-        self.artist = artist
-        self.title = title
-        self.lyrics = lyrics
+    def __init__(self, **kwargs):
+        for key in kwargs:
+            self.__dict__[key] = kwargs[key]
 
     def __str__(self):
-        return "%s | %s - %s" % (self.year, self.artist, self.title)
+        limited = {k: str(v)[:20] for k, v in self.__dict__.iteritems()}
+        return str(limited)
