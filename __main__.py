@@ -1,19 +1,22 @@
-from readers import CSVSongReader
-# from mappers import Mapper
+from readers import CSVReader
+from mappers import SongMapper
+from stores import SongStore
+
+
 # from models import Song
 
 
 class Main:
-    SONG_FILE = './songdata.csv'
-
     def __init__(self):
         pass
 
-    def run(self):
-        file_reader = CSVSongReader(self.SONG_FILE)
-        print(file_reader.get_items('artist'))
+    @staticmethod
+    def run():
+        mapper = SongMapper(CSVReader())
+        store = SongStore()
+        mapper.map_to_store(store)
 
+        print(store)
 
 if __name__ == '__main__':
-    main = Main()
-    main.run()
+    Main.run()

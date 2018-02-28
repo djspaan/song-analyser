@@ -1,13 +1,14 @@
-class Mapper:
-    YEAR_COLUMN = 'year'
-    ARTIST_COLUMN = 'artist'
-    TITLE_COLUMN = 'title'
-    LYRICS_COLUMN = 'lyrics'
+from models import Song
+
+
+class SongMapper:
+    SONG_FILE = './songdata.csv'
 
     reader = None
 
     def __init__(self, reader):
         self.reader = reader
 
-    def map(self):
-        pass
+    def map_to_store(self, store):
+        for item in self.reader.get_items(self.SONG_FILE):
+            store.add(Song(**item))
