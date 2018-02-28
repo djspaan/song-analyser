@@ -11,7 +11,7 @@ class SongStore:
         return self.songs
 
     def __str__(self):
-        return ' ---- '.join(map(str, self.songs))
+        return '\n'.join(map(str, self.songs))
 
 
 

@@ -10,5 +10,6 @@ class SongMapper:
         self.reader = reader
 
     def map_to_store(self, store):
-        for item in self.reader.get_items(self.SONG_FILE):
-            store.add(Song(**item))
+        for song in self.reader.get_items(self.SONG_FILE):
+            store.add(Song(**song))
+        return store
