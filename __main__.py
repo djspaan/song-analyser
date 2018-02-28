@@ -11,7 +11,7 @@ class Main:
     def run():
         mapper = SongMapper(CSVReader())
         store = mapper.map_to_store(SongStore())
-        print(store)
+        print(store.all())
 
 
 if __name__ == '__main__':

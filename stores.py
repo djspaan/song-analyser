@@ -1,3 +1,6 @@
+from collections import SongCollection
+
+
 class SongStore:
     songs = []
 
@@ -8,17 +11,13 @@ class SongStore:
         self.songs.append(song)
 
     def all(self):
-        return self.songs
+        return SongCollection(self.songs)
 
     def where(self, key, value):
-        songs = [song for song in self.songs if getattr(song, key) == value]
-        return SongStore(songs)
+        return SongStore(self.songs).where(key, value)
 
     def __getitem__(self, key):
         return self.songs[key]
 
     def __str__(self):
         return '\n'.join(map(str, self.songs))
-
-
-
