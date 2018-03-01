@@ -2,8 +2,10 @@ from csv import reader
 
 
 class CSVReader:
-    def __init__(self):
-        pass
+    source_file = ''
+
+    def __init__(self, source_file):
+        self.source_file = source_file
 
     @staticmethod
     def parse_items(header, rows):
@@ -15,9 +17,8 @@ class CSVReader:
             items.append(item)
         return items
 
-    @staticmethod
-    def get_items(source_file):
-        items = open(source_file, "r")
+    def get_items(self):
+        items = open(self.source_file, "r")
         rows = list(reader(items))
         header = rows.pop(0)
         return CSVReader.parse_items(header, rows)
