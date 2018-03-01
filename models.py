@@ -14,5 +14,5 @@ class Song:
             self.__dict__[key] = kwargs[key]
 
     def __str__(self):
-        limited = {k: str(v)[:20] for k, v in self.__dict__.iteritems()}
+        limited = {key: str(value)[:20] for key, value in self.__dict__.iteritems()}
         return str(limited)
