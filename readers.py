@@ -1,4 +1,5 @@
 from csv import reader
+from formatters import SongFormatter
 
 
 class CSVReader:
@@ -13,7 +14,7 @@ class CSVReader:
         for row in rows:
             item = {}
             for i, column in enumerate(header):
-                item[column] = row[i]
+                item[column] = SongFormatter.strip(row[i])
             items.append(item)
         return items
 

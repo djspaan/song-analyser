@@ -7,6 +7,9 @@ class Collection:
     def all(self):
         return self.items
 
+    def count(self):
+        return len(self.items)
+
     def __getitem__(self, key):
         return self.items[key]
 
