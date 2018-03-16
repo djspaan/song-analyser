@@ -10,6 +10,18 @@ class Collection:
     def count(self):
         return len(self.items)
 
+    def pluck(self, attribute):
+        return [getattr(item, attribute) for item in self.items]
+
+    def first(self):
+        return self.items[0]
+
+    def take(self, amount):
+        return Collection(self.items[0:amount])
+
+    def map(self, callback):
+        return {item.Title: callback(item) for item in self.items}
+
     def __getitem__(self, key):
         return self.items[key]
 

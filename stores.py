@@ -1,4 +1,4 @@
-from collections import SongCollection
+from containers import SongCollection
 
 
 class SongStore:
