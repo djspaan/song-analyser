@@ -2,6 +2,15 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import matplotlib.pyplot as plt
 import collections
 import numpy
+from nlp_rake import rake
+
+
+class Rake:
+    def __init__(self, min_chars=5, min_words=3, min_appearance=4):
+        self.rake_impl = rake.Rake('data/stoplist.txt', min_chars, min_words, min_appearance)
+
+    def extract(self, text):
+        return self.rake_impl.run(text)
 
 
 class SongAnalyzer:
