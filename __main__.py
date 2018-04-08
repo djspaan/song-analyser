@@ -27,7 +27,7 @@ class Main:
 
 
         # Print the keywords extracted from all songs
-        songs = self.store.all().where('Genre', 'Pop').where('Year', '1992')
+        songs = self.store.all()
         analyzer = Rake(4, 3, 2)
         result = []
         for song in songs:
@@ -44,33 +44,30 @@ class Main:
         plt.axis("off")
         plt.show()
 
-        # # Print the keywords extracted from all songs
-        # songs = self.store.all()
-        # analyzer = Rake(4, 3, 2)
-        # for song in songs:
-        #     print('')
-        #     print(song.Title + ' - ' + song.Artist)
-        #     print(analyzer.extract(song.Lyrics))
+        # Print the keywords extracted from all songs
+        songs = self.store.all()
+        analyzer = Rake(4, 3, 2)
+        for song in songs:
+            print('')
+            print(song.Title + ' - ' + song.Artist)
+            print(analyzer.extract(song.Lyrics))
 
-        # # Print all the songs retrieved from the song file.
-        # print(self.store.all())
+        # Plot a graph of the mean compound sentiment of songs per year.
+        songs = self.store.all()
+        analyzed_by_year = VaderSongAnalyzer.get_sentiment_by_year(songs)
+        VaderSongAnalyzer.plot(analyzed_by_year, title='Mean compound sentiment per year', ylabel='Compound sentiment')
 
-        # # Plot a graph of the mean compound sentiment of songs per year.
-        # songs = self.store.all()
-        # analyzed_by_year = VaderSongAnalyzer.get_sentiment_by_year(songs)
-        # VaderSongAnalyzer.plot(analyzed_by_year, title='Mean compound sentiment per year', ylabel='Compound sentiment')
-        #
-        # # Plot a graph of the mean compound sentiment of hiphop songs per year.
-        # songs = self.store.all().where('Genre', 'Hip-Hop')
-        # analyzed_by_year = VaderSongAnalyzer.get_sentiment_by_year(songs)
-        # VaderSongAnalyzer.plot(analyzed_by_year,
-        #   title='Average compound sentiment of hip-hop songs per year', ylabel='Compound Sentiment')
-        #
-        # # Plot a graph of the mean compound sentiment of pop songs per year.
-        # songs = self.store.all().where('Genre', 'Pop')
-        # analyzed_by_year = VaderSongAnalyzer.get_sentiment_by_year(songs)
-        # VaderSongAnalyzer.plot(analyzed_by_year,
-        #                        title='Average compound sentiment of pop songs per year', ylabel='Compound Sentiment')
+        # Plot a graph of the mean compound sentiment of hiphop songs per year.
+        songs = self.store.all().where('Genre', 'Hip-Hop')
+        analyzed_by_year = VaderSongAnalyzer.get_sentiment_by_year(songs)
+        VaderSongAnalyzer.plot(analyzed_by_year,
+          title='Average compound sentiment of hip-hop songs per year', ylabel='Compound Sentiment')
+
+        # Plot a graph of the mean compound sentiment of pop songs per year.
+        songs = self.store.all().where('Genre', 'Pop')
+        analyzed_by_year = VaderSongAnalyzer.get_sentiment_by_year(songs)
+        VaderSongAnalyzer.plot(analyzed_by_year,
+                               title='Average compound sentiment of pop songs per year', ylabel='Compound Sentiment')
 
 
 if __name__ == '__main__':
